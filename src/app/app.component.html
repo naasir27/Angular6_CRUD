@@ -2,11 +2,14 @@
   <h1 style="color: blue">{{title}}</h1>
   <h2>{{description}}</h2>
   <nav>
-    <a routerLink="customer" class="btn btn-primary active" role="button" routerLinkActive="active">Customer List </a>
-    <a routerLink="add" class="btn btn-primary active" role="button" routerLinkActive="active">Add</a>
-    <a routerLink="findbyage" class="btn btn-primary active" role="button" routerLinkActive="active">Search</a>
+    <p>
+      <a routerLink="customer" class="btn btn-primary active" role="button" routerLinkActive="active">Customers</a>
 
+      <a routerLink="add" class="btn btn-primary active" role="button" routerLinkActive="active">&nbsp;add&nbsp;&nbsp;</a>
+      <a routerLink="findbyage" class="btn btn-primary active" role="button" routerLinkActive="active">Search</a>
+    </p>
   </nav>
   <router-outlet></router-outlet>
 
 </div>
+<!--&nbsp; is used to insert a tab-->
