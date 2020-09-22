@@ -1,0 +1,22 @@
+
+<mat-toolbar color="primary">
+  Update Entry
+<span class="flex-spacer"></span>
+<button mat-button mat-dialog-close>  &times;</button>
+</mat-toolbar>
+<!-- <p>{{ data|json}} </p> -->
+<div [hidden]="submitted" style="width: 300px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="this.data.name" name="name">
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="text" class="form-control" id="age" required [(ngModel)]="this.data.age" name="age">
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)='updateCustomer()' >Save</button>
+  </form>
+</div>
