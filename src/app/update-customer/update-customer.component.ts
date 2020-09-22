@@ -42,19 +42,17 @@ export class UpdateCustomerComponent implements OnInit {
       .subscribe(data => console.log(data), error => console.log(error));
   }
   updateCustomer() {
-    // this.customerService.updateCustomer(this.customer.id, this.customer)
-    //   .subscribe(result => {
-    //     console.log(result);
-    //     this.customer = new Customer();
-    //     this.gotoList();
-    //   }, error => console.log(error));
+    this.customerService.updateCustomer(this.data.id, this.data)
+      .subscribe(result => {
+        console.log(result);
+        this.customer = new Customer();
+        this.dialogRef.close();
+      }, error => console.log(error));
   }
 
   onSubmit() {
-    // this.updateCustomer();
-    console.log(this.customer.name);
+    this.updateCustomer();
+
   }
-  gotoList() {
-    this.router.navigate(['/customer']);
-  }
+
 }

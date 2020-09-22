@@ -55,9 +55,15 @@ export class CustomerDetailsComponent implements OnInit {
       console.log(this.customer.name);
       dialogRef.afterClosed().subscribe(result => {
         console.log('Closed the Dialog: ${result}');
-        this.customer = result;
-
+        // this.customer = result;
+        this.reloadData();
       });
 
+  }
+
+  reloadData() {
+     this.customerService.getCustomersList().subscribe(res => {
+       this.customer = res[0];
+     });
   }
 }
