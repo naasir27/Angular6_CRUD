@@ -2,12 +2,13 @@
 <mat-toolbar color="primary">
   Update Entry
 <span class="flex-spacer"></span>
-<button mat-button mat-dialog-close>  &times;</button>
+<button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 <!-- <p>{{ data|json}} </p> -->
 <div [hidden]="submitted" style="width: 300px;">
   <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
+    <div style="align-content: center" class="form-group">
+      <div class="sized-box"></div>
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" required [(ngModel)]="this.data.name" name="name">
     </div>

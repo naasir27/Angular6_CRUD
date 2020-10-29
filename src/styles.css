@@ -4,5 +4,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
 
 .flex-spacer{
-  flex: 20 auto;
+  flex: 120 auto;
+}
+.sized-box{
+  min-height: 20mm;
 }
