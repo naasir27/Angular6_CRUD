@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CustomerService {
 
-  private baseUrl = 'http://localhost:8081/api/customers';
+  public baseUrl = 'http://localhost:8081/api/customers';
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +29,9 @@ export class CustomerService {
 
   getCustomersList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
+  }
+  getSize(): Observable<object> {
+    return this.http.get(`${this.baseUrl}/size`);
   }
 
   getCustomersByAge(age: number): Observable<any> {

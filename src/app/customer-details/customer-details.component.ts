@@ -14,7 +14,7 @@ export interface DialogData {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+
   selector: 'customer-details',
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.css']
@@ -22,6 +22,7 @@ export interface DialogData {
 export class CustomerDetailsComponent implements OnInit {
 
   @Input() customer: Customer;
+  @Input() total : any;
 
   constructor(private customerService: CustomerService, private listComponent: CustomerListComponent, public dialog: MatDialog) { }
 
