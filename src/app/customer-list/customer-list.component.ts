@@ -1,10 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 import {CustomerService} from '../customer.service';
 import {Customer} from '../customer';
 import {MatPaginator} from '@angular/material';
-import {tap} from 'rxjs/operators';
+import {delay, map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer-list',
@@ -13,9 +13,13 @@ import {tap} from 'rxjs/operators';
 })
 export class CustomerListComponent implements OnInit {
 
-  // @Input('data') customer: Observable<Customer[]> =[];
+  @Input('data') customers: Observable<Customer[]>;
+  asyncCustomers: Observable<Customer[]>;
+  Page: number = 1;
+  Size: number = 4;
   recordCount: number;
-  customers: Observable<Customer[]>;
+  loading: boolean;
+  // customers: Observable<Customer[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private customerService: CustomerService) {
@@ -26,6 +30,17 @@ export class CustomerListComponent implements OnInit {
     // Todo check the variable type issue
     console.log(this.recordCount);
   }
+
+  /*  setPage(page: number) {
+      this.loading = true;
+      this.customerService.setPageNo(page);
+    }*/
+
+  setPaging(page: number, size: number) {
+    this.loading = true;
+    this.customerService.setPageSize(page, size);
+  }
+
 
   /*  ngAfterViewInit() {
       this.customerService.counter$
@@ -57,7 +72,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   reloadData() {
-    this.customers = this.customerService.getCustomersList();
+    this.customers = this.customerService.setPageSize(this.Page, this.Size);
     this.customerService.getSize().subscribe(res => {
       this.recordCount = Number(res);
     });

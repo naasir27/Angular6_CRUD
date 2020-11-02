@@ -63,8 +63,8 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   reloadData() {
-     this.customerService.getCustomersList().subscribe(res => {
-       this.customer = res[0];
+    this.customerService.getCustomer(this.customer.id).subscribe(res => {
+      this.customer = res[this.customer.id];
      });
   }
 }

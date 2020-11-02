@@ -54,4 +54,9 @@ export class UpdateCustomerComponent implements OnInit {
   onSubmit() {
     this.updateCustomer();
   }
+
+  ngOnDestroy() {
+    window.location.reload();
+  }
+
 }
