@@ -9,6 +9,12 @@
   <customer-details [customer]='customer'></customer-details>
 </div>
 <div>
-  <mat-paginator (page)="[Page]" [pageSizeOptions]="[2, 3, 5]" [pageSize]="2"></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="Size"
+    (page)="pageEvent = pageNavigations($event)"
+    [length]="recordCount">
+  </mat-paginator>
+
   <!--<button type="button" class="btn btn-danger" (click)='deleteCustomers()'>Delete All</button>-->
 </div>

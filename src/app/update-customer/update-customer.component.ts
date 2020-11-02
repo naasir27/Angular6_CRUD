@@ -1,6 +1,6 @@
 import { CustomerService } from './../customer.service';
 import { Customer } from './../customer';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 
 import { DialogData } from '../customer-details/customer-details.component';

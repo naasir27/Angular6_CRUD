@@ -6,6 +6,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 
 import { CustomerListComponent } from '../customer-list/customer-list.component';
 import { UpdateCustomerComponent } from '../update-customer/update-customer.component';
+import {queryRefresh} from '@angular/core/src/render3/query';
 
 export interface DialogData {
   name: string;

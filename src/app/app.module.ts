@@ -23,6 +23,7 @@ import {
   MatPaginatorModule,
   MatToolbarModule
 } from '@angular/material';
+import {CustomerService} from './customer.service';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import {
   entryComponents: [
     UpdateCustomerComponent
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

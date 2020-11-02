@@ -3,8 +3,8 @@ import {Observable, of} from 'rxjs';
 
 import {CustomerService} from '../customer.service';
 import {Customer} from '../customer';
-import {MatPaginator} from '@angular/material';
-import {delay, map, tap} from 'rxjs/operators';
+import {MatPaginator, PageEvent} from '@angular/material';
+
 
 @Component({
   selector: 'app-customer-list',
@@ -13,53 +13,23 @@ import {delay, map, tap} from 'rxjs/operators';
 })
 export class CustomerListComponent implements OnInit {
 
+
   @Input('data') customers: Observable<Customer[]>;
-  asyncCustomers: Observable<Customer[]>;
-  Page: number = 1;
-  Size: number = 4;
+  pageEvent: PageEvent;
+
+  Page: number = 0;
+  Size: number = 2;
   recordCount: number;
-  loading: boolean;
-  // customers: Observable<Customer[]>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  pageSizeOptions: number[] = [2, 3, 4, 5];
+
+
 
   constructor(private customerService: CustomerService) {
   }
 
   ngOnInit() {
     this.reloadData();
-    // Todo check the variable type issue
-    console.log(this.recordCount);
   }
-
-  /*  setPage(page: number) {
-      this.loading = true;
-      this.customerService.setPageNo(page);
-    }*/
-
-  setPaging(page: number, size: number) {
-    this.loading = true;
-    this.customerService.setPageSize(page, size);
-  }
-
-
-  /*  ngAfterViewInit() {
-      this.customerService.counter$
-        .pipe(
-          tap((count) => {
-            this.paginator.length = count;
-          })
-        )
-        .subscribe();
-
-      this.paginator.page
-        .pipe(
-          tap(() => this.loadData())
-        )
-        .subscribe();
-    }
-    loadData() {
-      this.customerService.getCustomersList(this.paginator.pageIndex, this.paginator.pageSize);
-    }*/
 
   deleteCustomers() {
     this.customerService.deleteAll()
@@ -72,13 +42,23 @@ export class CustomerListComponent implements OnInit {
   }
 
   reloadData() {
+
     this.customers = this.customerService.setPageSize(this.Page, this.Size);
     this.customerService.getSize().subscribe(res => {
       this.recordCount = Number(res);
+      // Todo check the variable type issue
+      console.log(this.recordCount);
     });
   }
 
-  navigatePage() {
+  pageNavigations(event?: PageEvent) {
+    console.log(event);
+    this.Page = event.pageIndex;
+    this.Size = event.pageSize;
+    this.reloadData();
+  }
+
+  navigatePage(Page: number) {
     this.customerService.getCustomersList();
   }
 }

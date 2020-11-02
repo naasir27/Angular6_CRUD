@@ -36,6 +36,10 @@ export class CustomerService {
     return this.http.get(`${this.baseUrl}/size`);
   }
 
+  setPageNo(page: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}?pageSize=4&pageNo=${page}`);
+  }
+
   setPageSize(page: number, size: number): Observable<any> {
     return this.http.get(`${this.baseUrl}?pageSize=${size}&pageNo=${page}`);
   }
