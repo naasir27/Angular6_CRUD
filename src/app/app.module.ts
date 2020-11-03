@@ -13,7 +13,17 @@ import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 // tslint:disable-next-line: max-line-length
-import {MatCheckboxModule, MatDialog, MatDialogModule, MatDialogRef, MatFormFieldModule, MatInputModule, MatToolbarModule} from '@angular/material';
+import {
+  MatCheckboxModule,
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatToolbarModule
+} from '@angular/material';
+import {CustomerService} from './customer.service';
 
 
 @NgModule({
@@ -35,12 +45,13 @@ import {MatCheckboxModule, MatDialog, MatDialogModule, MatDialogRef, MatFormFiel
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule
   ],
   entryComponents: [
     UpdateCustomerComponent
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

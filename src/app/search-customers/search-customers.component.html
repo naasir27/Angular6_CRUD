@@ -2,7 +2,7 @@
 <div style="width: 300px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="lastname">Age</label>
+      <label >Age</label>
       <input type="text" class="form-control" id="age" required [(ngModel)]="age" name="age">
     </div>
 
@@ -11,8 +11,10 @@
     </div>
   </form>
 </div>
+<div class="sized-box"></div>
 <ul>
   <li *ngFor="let customer of customers">
     <h3>{{customer.name}} {{customer.age}}</h3>
   </li>
 </ul>
+<div style="color: red" *ngIf="this.msg != null">{{this.msg}}</div>

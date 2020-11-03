@@ -12,11 +12,13 @@ export class SearchCustomersComponent implements OnInit {
 
   age: number;
   customers: Customer[];
+  msg: String;
 
   constructor(private dataService: CustomerService) { }
 
   ngOnInit() {
-    this.age = 0;
+    this.age = null;
+    this.msg = null;
   }
 
   private searchCustomers() {
@@ -24,7 +26,20 @@ export class SearchCustomersComponent implements OnInit {
       .subscribe(customers => this.customers = customers);
   }
 
+  private showNotFound() {
+    if(this.customers.length > 0){
+      console.log(this.customers.length);
+      this.msg = null;
+    } else {
+      console.log(this.customers.length);
+      this.msg = "No results were found";
+    }
+  }
+
   onSubmit() {
+    this.searchCustomers();
+    console.log(this.customers);
+    this.showNotFound();
     this.searchCustomers();
   }
 }

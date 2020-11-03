@@ -6,6 +6,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 
 import { CustomerListComponent } from '../customer-list/customer-list.component';
 import { UpdateCustomerComponent } from '../update-customer/update-customer.component';
+import {queryRefresh} from '@angular/core/src/render3/query';
 
 export interface DialogData {
   name: string;
@@ -14,7 +15,7 @@ export interface DialogData {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
+
   selector: 'customer-details',
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.css']
@@ -22,6 +23,7 @@ export interface DialogData {
 export class CustomerDetailsComponent implements OnInit {
 
   @Input() customer: Customer;
+  @Input() total : any;
 
   constructor(private customerService: CustomerService, private listComponent: CustomerListComponent, public dialog: MatDialog) { }
 
@@ -62,8 +64,8 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   reloadData() {
-     this.customerService.getCustomersList().subscribe(res => {
-       this.customer = res[0];
+    this.customerService.getCustomer(this.customer.id).subscribe(res => {
+      this.customer = res[this.customer.id];
      });
   }
 }

@@ -1,9 +1,10 @@
 import { CustomerService } from './../customer.service';
 import { Customer } from './../customer';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { Component, Inject, OnInit } from '@angular/core';
 
 import { DialogData } from '../customer-details/customer-details.component';
+import {Observable} from 'rxjs';
 
 
 
@@ -43,8 +44,8 @@ export class UpdateCustomerComponent implements OnInit {
   }
   updateCustomer() {
     this.customerService.updateCustomer(this.data.id, this.data)
-      .subscribe(result => {
-        console.log(result);
+      .subscribe(data => {
+        console.log(data);
         this.customer = new Customer();
         this.dialogRef.close();
       }, error => console.log(error));
@@ -52,7 +53,10 @@ export class UpdateCustomerComponent implements OnInit {
 
   onSubmit() {
     this.updateCustomer();
+  }
 
+  ngOnDestroy() {
+    window.location.reload();
   }
 
 }
